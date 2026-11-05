@@ -1,0 +1,196 @@
+/* --------------------------------------------------------------------------
+   Romantic Multilingual Heart Typography Animation
+   Style: Pure AMOLED Black, Soft Pink & Neon Ruby Red Glow
+   -------------------------------------------------------------------------- */
+
+:root {
+  --bg-color: #000000;
+  --text-pink: #ff9ebb;
+  --text-pink-soft: #ffaec5;
+  --glow-coral: rgba(255, 126, 163, 0.8);
+  --glow-pink-outer: rgba(255, 75, 130, 0.45);
+  --glow-ambient: rgba(255, 50, 115, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bg-color);
+  color: #ffffff;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   Top-Right Romantic Header
+   -------------------------------------------------------------------------- */
+.top-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  pointer-events: none;
+  padding: max(22px, env(safe-area-inset-top, 22px)) max(26px, env(safe-area-inset-right, 26px)) 0 0;
+}
+
+.top-right-message {
+  font-family: 'Dancing Script', cursive, serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.95rem);
+  font-weight: 700;
+  color: var(--text-pink);
+  letter-spacing: 0.8px;
+  line-height: 1.25;
+  white-space: nowrap;
+  text-align: right;
+  text-shadow:
+    0 0 8px var(--glow-coral),
+    0 0 18px var(--glow-pink-outer),
+    0 0 32px var(--glow-ambient);
+  animation: romanticPulse 4s ease-in-out infinite alternate;
+  will-change: text-shadow, opacity;
+  padding: 4px 10px;
+  border-radius: 8px;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+@keyframes romanticPulse {
+  0% {
+    text-shadow:
+      0 0 6px var(--glow-coral),
+      0 0 14px var(--glow-pink-outer),
+      0 0 25px var(--glow-ambient);
+    opacity: 0.94;
+  }
+  100% {
+    text-shadow:
+      0 0 12px var(--glow-coral),
+      0 0 24px rgba(255, 105, 150, 0.65),
+      0 0 42px var(--glow-ambient);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Canvas Stage Wrapper
+   -------------------------------------------------------------------------- */
+.canvas-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+  overflow: hidden;
+}
+
+#heartCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   Subtle Bottom Replay Controls
+   -------------------------------------------------------------------------- */
+.controls-overlay {
+  position: fixed;
+  bottom: max(20px, env(safe-area-inset-bottom, 20px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  pointer-events: auto;
+}
+
+.replay-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(25, 20, 28, 0.6);
+  border: 1px solid rgba(255, 158, 187, 0.25);
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.replay-pill:hover, .replay-pill:focus-visible {
+  color: #ffffff;
+  border-color: rgba(255, 158, 187, 0.6);
+  background: rgba(45, 25, 38, 0.8);
+  box-shadow: 0 0 15px rgba(255, 126, 163, 0.35);
+  transform: translateY(-1px);
+}
+
+.replay-pill:active {
+  transform: translateY(1px);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Adaptations
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .top-header {
+    padding-top: max(16px, env(safe-area-inset-top, 16px));
+    padding-right: max(18px, env(safe-area-inset-right, 18px));
+  }
+  .top-right-message {
+    font-size: clamp(1.05rem, 3.8vw, 1.45rem);
+    letter-spacing: 0.4px;
+  }
+  .replay-pill {
+    padding: 7px 15px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-header {
+    padding-top: max(14px, env(safe-area-inset-top, 14px));
+    padding-right: max(14px, env(safe-area-inset-right, 14px));
+  }
+  .top-right-message {
+    font-size: clamp(0.95rem, 4.4vw, 1.25rem);
+    letter-spacing: 0.3px;
+    padding: 3px 6px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .top-header {
+    padding-top: max(8px, env(safe-area-inset-top, 8px));
+    padding-right: max(16px, env(safe-area-inset-right, 16px));
+  }
+  .top-right-message {
+    font-size: clamp(0.9rem, 2.8vh, 1.15rem);
+  }
+  .controls-overlay {
+    bottom: max(10px, env(safe-area-inset-bottom, 10px));
+  }
+}
